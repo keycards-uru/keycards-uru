@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos de Autos - Blimbourukeys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        h2 {
+            color: #333;
+        }
+        .game {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Juegos de Autos</h1>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="accion.html">Acción</a>
+    <a href="simulacion.html">Simulación</a>
+    <a href="terror.html">Terror</a>
+    <a href="vr.html">Realidad Virtual</a>
+    <a href="creatividad.html">Creatividad</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+
+<section>
+    <h2>BeamNG.drive</h2>
+    <div class="game">
+        <img src="ruta/a/la/imagen/beamng.jpg" alt="BeamNG.drive" width="200">
+        <p>Precio: $200 USD</p>
+        <p>Descripción: (Puedes agregar aquí la descripción del juego.)</p>
+    </div>
+    <h2>Assetto Corsa</h2>
+    <div class="game">
+        <img src="ruta/a/la/imagen/assettocorsa.jpg" alt="Assetto Corsa" width="200">
+        <p>Precio: $300 USD</p>
+        <p>Descripción: (Puedes agregar aquí la descripción del juego.)</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Blimbourukeys - Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blimbourukeys - Tienda de Juegos y Plata para Juegos a bajo precio">
+    <title>Blimbourukeys - Venta de Juegos y Plata en Juegos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        h2 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Blimbourukeys</h1>
+    <p>Juegos online y plata en juegos a bajo precio</p>
+</header>
+
+<nav>
+    <a href="accion.html">Acción</a>
+    <a href="autos.html">Autos</a>
+    <a href="simulacion.html">Simuladores</a>
+    <a href="terror.html">Terror</a>
+    <a href="vr.html">VR</a>
+    <a href="creatividad.html">Creatividad</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+
+<section>
+    <h2>Bienvenido a Blimbourukeys</h2>
+    <p>Selecciona una categoría para ver los juegos disponibles.</p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Blimbourukeys - Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
