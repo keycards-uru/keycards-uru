@@ -156,9 +156,9 @@
     }
 
     function addToCart(price) {
-        totalAmount += price; // Sumar el precio del juego al total
-        localStorage.setItem('totalAmount', totalAmount); // Guardar el total en localStorage
-        document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`; // Actualizar el total
+        totalAmount += price; // Sumar el precio del juego al totallocalStorage
+        document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`; //
+        localStorage.setItem('totalAmount', totalAmount); // Guardar el total en  Actualizar el total
         alert(`Juego agregado al carrito. Total: $${totalAmount}`);
     }
 </script>
