@@ -16,6 +16,24 @@
             color: #fff;
             text-align: center;
             padding: 20px;
+            position: relative;
+        }
+        .cart-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .cart-info img {
+            width: 30px;
+            margin-right: 10px;
         }
         section {
             padding: 20px;
@@ -48,6 +66,10 @@
 
 <header>
     <h1>Carrito de Compras</h1>
+    <div class="cart-info" onclick="goToCart()">
+        <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Carrito de Compras"> <!-- Icono de carrito -->
+        <span>Total: $<span id="totalPrice">0</span></span>
+    </div>
 </header>
 
 <section>
@@ -64,20 +86,27 @@
 
 <script>
     let cart = [];
+    let totalPrice = 0;
 
     function addToCart(game) {
         cart.push(game);
+        totalPrice += game.price;
         updateCartDisplay();
+        updateTotalPrice();
     }
 
     function removeFromCart(index) {
+        totalPrice -= cart[index].price;
         cart.splice(index, 1);
         updateCartDisplay();
+        updateTotalPrice();
     }
 
     function clearCart() {
         cart = [];
+        totalPrice = 0;
         updateCartDisplay();
+        updateTotalPrice();
     }
 
     function updateCartDisplay() {
@@ -93,6 +122,17 @@
             `;
             cartItemsDiv.appendChild(gameDiv);
         });
+    }
+
+    function updateTotalPrice() {
+        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+    }
+
+    function goToCart() {
+        // Redirigir a la página de carrito de compras
+        alert('Ir al carrito para finalizar la compra.');
+        // Aquí puedes redirigir a la página del carrito real si tienes una
+        // window.location.href = 'carrito.html';
     }
 
     document.getElementById('clearCart').addEventListener('click', clearCart);
