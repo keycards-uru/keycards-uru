@@ -6,6 +6,9 @@
     <meta name="description" content="Blimbourukeys - Tienda de Juegos y Plata para Juegos a bajo precio">
     <title>Blimbourukeys - Venta de Juegos y Plata en Juegos</title>
     <style>
+        * {
+            box-sizing: border-box; /* Hace que padding y borde estén incluidos en el tamaño total del elemento */
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -19,12 +22,13 @@
             text-align: center;
         }
         header img {
-            max-width: 300px; /* Aumenta el tamaño máximo del logo */
+            max-width: 80%; /* Reduce el logo al 80% del ancho de la pantalla */
             height: auto;
-            margin-bottom: 10px; /* Espacio entre el logo y el título */
+            margin-bottom: 10px;
         }
         nav {
             display: flex;
+            flex-wrap: wrap; /* Permite que el menú se ajuste en pantallas pequeñas */
             justify-content: center;
             background-color: #444;
             padding: 10px;
@@ -33,18 +37,22 @@
             color: #fff;
             margin: 0 15px;
             text-decoration: none;
+            flex: 1 1 100px; /* Se ajusta a diferentes tamaños de pantalla */
+            text-align: center; /* Centra el texto en los botones */
+            padding: 5px 0; /* Aumenta el área de clic */
         }
         nav a:hover {
             text-decoration: underline;
         }
         section {
             padding: 20px;
-            max-width: 1200px;
+            max-width: 100%; /* Asegura que la sección no sobrepase el ancho de la pantalla */
             margin: 0 auto;
             background-color: #fff;
         }
         h2 {
             color: #333;
+            text-align: center;
         }
         .button {
             display: inline-block;
@@ -63,9 +71,18 @@
             color: #fff;
             text-align: center;
             padding: 20px;
-            position: fixed;
             width: 100%;
             bottom: 0;
+        }
+        /* Media Queries para ajustar el diseño en dispositivos más pequeños */
+        @media (max-width: 768px) {
+            header img {
+                max-width: 90%; /* Aumenta el tamaño del logo en pantallas más pequeñas */
+            }
+            nav a {
+                flex: 1 1 80px; /* Ajusta el tamaño de los enlaces en pantallas más pequeñas */
+                margin: 5px; /* Reduce los márgenes para caber mejor */
+            }
         }
     </style>
 </head>
