@@ -43,8 +43,11 @@
         .game {
             margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+        }
+        .game img {
+            width: 200px;
+            margin-right: 20px;
         }
         .purchase-button {
             display: inline-block;
@@ -81,24 +84,32 @@
 <section>
     <h2>BeamNG.drive</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/284160/header.jpg?t=1728045845" alt="BeamNG.drive" width="200">
-        <p>Precio: $3.83 USD</p>
-        <p>Descripción: (the best car crash simulator and realistic physics)</p>
-        <a href="#" class="purchase-button" onclick="addToCart({ name: 'BeamNG.drive', price: 3.83 })">Agregar al Carrito</a>
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/284160/header.jpg?t=1728045845" alt="BeamNG.drive">
+        <div>
+            <p>Precio: $3.83 USD</p>
+            <p>Descripción: El mejor simulador de choques de coches y física realista.</p>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'BeamNG.drive', price: 3.83 })">Agregar al Carrito</a>
+        </div>
     </div>
+    
     <h2>Assetto Corsa</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/244210/header.jpg?t=1725038038" alt="Assetto Corsa" width="200">
-        <p>Precio: $5 USD</p>
-        <p>Descripción: (juego de carreras.)</p>
-        <a href="#" class="purchase-button" onclick="addToCart({ name: 'Assetto Corsa', price: 5 })">Agregar al Carrito</a>
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/244210/header.jpg?t=1725038038" alt="Assetto Corsa">
+        <div>
+            <p>Precio: $5 USD</p>
+            <p>Descripción: Un juego de carreras que ofrece una experiencia de conducción realista.</p>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Assetto Corsa', price: 5 })">Agregar al Carrito</a>
+        </div>
     </div>
+    
     <h2>CarX Street</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1114150/header.jpg?t=1728564836" alt="CarX Street" width="200">
-        <p>Precio: $6 USD</p>
-        <p>Descripción: Conquista carreteras de montaña, autopistas y calles de la ciudad...</p>
-        <a href="#" class="purchase-button" onclick="addToCart({ name: 'CarX Street', price: 6 })">Agregar al Carrito</a>
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1114150/header.jpg?t=1728564836" alt="CarX Street">
+        <div>
+            <p>Precio: $6 USD</p>
+            <p>Descripción: Conquista carreteras de montaña, autopistas y calles de la ciudad. Construye el auto de tus sueños con ajustes detallados que liberan el potencial de la física de la “Tecnología CarX”©.</p>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'CarX Street', price: 6 })">Agregar al Carrito</a>
+        </div>
     </div>
 </section>
 
