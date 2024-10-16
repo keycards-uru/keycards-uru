@@ -3,126 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blimbourukeys - Terror</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        // Función para añadir juegos al carrito
-        function addToCart(gameName, price) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name: gameName, price: price });
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(gameName + ' ha sido añadido al carrito.');
-        }
-    </script>
+    <title>Juegos de Terror - Blimbourukeys</title>
     <style>
-        /* Estilo para el menú de navegación */
-        nav ul {
-            display: flex; /* Alinear horizontalmente */
-            list-style-type: none; /* Quitar viñetas */
-            padding: 0; /* Sin padding */
-            margin: 0; /* Sin margin */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-
-        nav ul li {
-            margin-right: 20px; /* Espacio entre enlaces */
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
         }
-
-        nav ul li a {
-            text-decoration: none; /* Sin subrayado */
-            font-size: 18px; /* Tamaño de fuente */
-            color: #000; /* Color de texto */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
         }
-
-        nav ul li a:hover {
-            text-decoration: underline; /* Subrayado al pasar el mouse */
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
         }
-
-        /* Estilo para las categorías */
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
         h2 {
-            font-size: 24px; /* Tamaño de fuente más grande */
+            color: #333;
         }
-
         .game {
-            margin-bottom: 20px; /* Espacio entre juegos */
-            border: 1px solid #ccc; /* Borde alrededor de cada juego */
-            padding: 10px; /* Espacio interior */
-            border-radius: 5px; /* Bordes redondeados */
-            background-color: #f9f9f9; /* Fondo de cada juego */
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
-
         .game img {
-            max-width: 100%; /* Imagen responsiva */
-            height: auto; /* Mantener la proporción */
+            width: 200px;
+            margin-right: 20px;
         }
-
-        footer {
-            text-align: center; /* Centrar el texto en el pie de página */
-            margin-top: 20px; /* Espacio encima del pie de página */
+        .purchase-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .purchase-button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>blimbourukeys</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="terror.html">Terror</a></li>
-                <li><a href="action.html">Acción</a></li>
-                <li><a href="autos.html">Autos</a></li> <!-- Cambiado a 'Autos' -->
-                <li><a href="simulation.html">Simulación</a></li>
-                <li><a href="creativity.html">Creatividad</a></li>
-                <li><a href="carrito.html">Carrito</a></li> <!-- Enlace al carrito -->
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <h2>Juegos de Terror</h2>
+<header>
+    <h1>Juegos de Terror</h1>
+</header>
 
-        <div class="game">
-            <h3>Five Nights at Freddy's: Into the Pit</h3>
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1723571309" alt="Five Nights at Freddy's: Into the Pit">
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="accion.html">Acción</a>
+    <a href="simulacion.html">Simulación</a>
+    <a href="terror.html">Terror</a>
+    <a href="vr.html">Realidad Virtual</a>
+    <a href="creatividad.html">Creatividad</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="carrito.html">Carrito</a> <!-- Enlace al carrito -->
+</nav>
+
+<section>
+    <h2>Five Nights at Freddy's: Into the Pit</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1723571309" alt="Five Nights at Freddy's: Into the Pit">
+        <div>
             <p>Precio: 5 US dólares</p>
             <p>Descripción: Una emocionante experiencia de supervivencia donde los jugadores deben pasar cinco noches en un lugar lleno de animatronics aterradores.</p>
-            <button onclick="addToCart('Five Nights at Freddy\'s: Into the Pit', 5)">Añadir al carrito</button>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Five Nights at Freddy\'s: Into the Pit', price: 5 })">Agregar al Carrito</a>
         </div>
+    </div>
 
-        <div class="game">
-            <h3>Left to Rot</h3>
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2020840/header.jpg?t=1728489895" alt="Left to Rot">
+    <h2>Left to Rot</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2020840/header.jpg?t=1728489895" alt="Left to Rot">
+        <div>
             <p>Precio: 1 US dólar</p>
             <p>Descripción: Un juego de terror que te sumerge en un mundo de pesadilla.</p>
-            <button onclick="addToCart('Left to Rot', 1)">Añadir al carrito</button>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Left to Rot', price: 1 })">Agregar al Carrito</a>
         </div>
+    </div>
 
-        <div class="game">
-            <h3>Psycho Fear</h3>
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2208780/header.jpg?t=1728659420" alt="Psycho Fear">
+    <h2>Psycho Fear</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2208780/header.jpg?t=1728659420" alt="Psycho Fear">
+        <div>
             <p>Precio: 2 US dólares</p>
             <p>Descripción: Enfréntate a tus miedos en este intenso juego de horror.</p>
-            <button onclick="addToCart('Psycho Fear', 2)">Añadir al carrito</button>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Psycho Fear', price: 2 })">Agregar al Carrito</a>
         </div>
+    </div>
 
-        <div class="game">
-            <h3>Refuted Wind</h3>
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796020/header.jpg?t=1727537653" alt="Refuted Wind">
+    <h2>Refuted Wind</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796020/header.jpg?t=1727537653" alt="Refuted Wind">
+        <div>
             <p>Precio: 1 US dólar</p>
             <p>Descripción: Están ocurriendo misteriosos asesinatos en el área donde vive Dave. En un intento de llamar la atención sobre estos horribles acontecimientos, decide realizar un cortometraje. A medida que se conoce su proyecto, empiezan a suceder acontecimientos aterradores a su alrededor.</p>
-            <button onclick="addToCart('Refuted Wind', 1)">Añadir al carrito</button>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Refuted Wind', price: 1 })">Agregar al Carrito</a>
         </div>
+    </div>
 
-        <div class="game">
-            <h3>Gwihyang: Homecoming</h3>
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3060970/header.jpg?t=1726412438" alt="Gwihyang: Homecoming">
+    <h2>Gwihyang: Homecoming</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3060970/header.jpg?t=1726412438" alt="Gwihyang: Homecoming">
+        <div>
             <p>Precio: 1.50 US dólares</p>
             <p>Descripción: Gwihyang captura la imagen tradicional de Corea, brindándole una nueva experiencia. Se desarrolla una tensa aventura en la que escapas de la amenaza de los monstruos en el espacio cambiante.</p>
-            <button onclick="addToCart('Gwihyang: Homecoming', 1.5)">Añadir al carrito</button>
+            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Gwihyang: Homecoming', price: 1.5 })">Agregar al Carrito</a>
         </div>
-    </main>
+    </div>
+</section>
 
-    <footer>
-        <p>&copy; 2024 blimbourukeys. Todos los derechos reservados.</p>
-    </footer>
+<footer>
+    <p>&copy; 2024 Blimbourukeys - Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    let cart = [];
+
+    function addToCart(game) {
+        cart.push(game);
+        alert(`${game.name} ha sido agregado al carrito.`);
+    }
+
+    function updateCartDisplay() {
+        // Esta función se utilizará en la página del carrito
+    }
+</script>
+
 </body>
 </html>
