@@ -98,53 +98,44 @@
 <section>
     <h2>Five Nights at Freddy's: Into the Pit</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1723571309" alt="Five Nights at Freddy's: Into the Pit">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1219200/header.jpg?t=1724624857" alt="Five Nights at Freddy's: Into the Pit">
         <div>
-            <p>Precio: 5 US dólares</p>
-            <p>Descripción: Una emocionante experiencia de supervivencia donde los jugadores deben pasar cinco noches en un lugar lleno de animatronics aterradores.</p>
-            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Five Nights at Freddy\'s: Into the Pit', price: 5 })">Agregar al Carrito</a>
-        </div>
-    </div>
-
-    <h2>Left to Rot</h2>
-    <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2020840/header.jpg?t=1728489895" alt="Left to Rot">
-        <div>
-            <p>Precio: 1 US dólar</p>
-            <p>Descripción: Un juego de terror que te sumerge en un mundo de pesadilla.</p>
-            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Left to Rot', price: 1 })">Agregar al Carrito</a>
+            <p>Precio: 4 US dólares</p>
+            <p>Descripción: Un aterrador juego de supervivencia donde te enfrentas a terroríficos animatrónicos.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(4)">Agregar al Carrito</a>
         </div>
     </div>
 
     <h2>Psycho Fear</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2208780/header.jpg?t=1728659420" alt="Psycho Fear">
+        <img src="https://steamunlocked.net/wp-content/uploads/2024/10/Psycho-Fear-Free-Download.png" alt="Psycho Fear">
         <div>
             <p>Precio: 2 US dólares</p>
-            <p>Descripción: Enfréntate a tus miedos en este intenso juego de horror.</p>
-            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Psycho Fear', price: 2 })">Agregar al Carrito</a>
+            <p>Descripción: Un juego de terror psicológico en donde enfrentas tus mayores miedos.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(2)">Agregar al Carrito</a>
         </div>
     </div>
 
-    <h2>Refuted Wind</h2>
+    <h2>Left to Rot</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796020/header.jpg?t=1727537653" alt="Refuted Wind">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1104710/header.jpg?t=1723516375" alt="Left to Rot">
         <div>
-            <p>Precio: 1 US dólar</p>
-            <p>Descripción: Están ocurriendo misteriosos asesinatos en el área donde vive Dave...</p>
-            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Refuted Wind', price: 1 })">Agregar al Carrito</a>
+            <p>Precio: 3 US dólares</p>
+            <p>Descripción: Escapa de una serie de horribles criaturas mientras intentas sobrevivir.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(3)">Agregar al Carrito</a>
         </div>
     </div>
 
     <h2>Gwihyang: Homecoming</h2>
     <div class="game">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3060970/header.jpg?t=1726412438" alt="Gwihyang: Homecoming">
+        <img src="https://steamunlocked.net/wp-content/uploads/2024/10/Gwihyang-Homecoming-Free-Download.png" alt="Gwihyang: Homecoming">
         <div>
             <p>Precio: 1.50 US dólares</p>
-            <p>Descripción: Gwihyang captura la imagen tradicional de Corea...</p>
-            <a href="#" class="purchase-button" onclick="addToCart({ name: 'Gwihyang: Homecoming', price: 1.5 })">Agregar al Carrito</a>
+            <p>Descripción: Aventura de terror en la que escapas de monstruos mientras exploras una antigua casa coreana.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(1.5)">Agregar al Carrito</a>
         </div>
     </div>
+
 </section>
 
 <footer>
@@ -152,22 +143,24 @@
 </footer>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Inicializa la variable del total
+    let totalAmount = 0;
 
-    function addToCart(game) {
-        cart.push(game);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${game.name} ha sido agregado al carrito.`);
-        updateCartCounter();
+    // Cargar el total desde localStorage
+    window.onload = function() {
+        const savedTotal = localStorage.getItem('totalAmount');
+        if (savedTotal) {
+            totalAmount = parseFloat(savedTotal);
+            document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`;
+        }
     }
 
-    function updateCartCounter() {
-        const total = cart.reduce((sum, game) => sum + game.price, 0);
-        document.getElementById('cartCounter').textContent = `Carrito: $${total.toFixed(2)}`;
+    function addToCart(price) {
+        totalAmount += price; 
+        document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`;
+        localStorage.setItem('totalAmount', totalAmount); 
+        alert(`Juego agregado al carrito. Total: $${totalAmount}`);
     }
-
-    // Actualiza el contador al cargar la página
-    updateCartCounter();
 </script>
 
 </body>
