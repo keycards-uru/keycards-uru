@@ -50,15 +50,26 @@
             justify-content: space-between;
             align-items: center;
         }
-        .remove-button {
+        .game img {
+            width: 50px;
+            margin-right: 20px;
+        }
+        .remove-button, .exit-button {
             padding: 5px 10px;
             background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 5px;
         }
-        .remove-button:hover {
+        .remove-button:hover, .exit-button:hover {
             background-color: #c82333;
+        }
+        .exit-button {
+            background-color: #007bff;
+            margin-top: 20px;
+        }
+        .exit-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -78,6 +89,7 @@
         <!-- Los juegos seleccionados se mostrarán aquí -->
     </div>
     <button id="clearCart" class="remove-button">Vaciar Carrito</button>
+    <button class="exit-button" onclick="exitToMenu()">Salir y Volver al Menú</button> <!-- Botón para salir -->
 </section>
 
 <footer>
@@ -89,15 +101,21 @@
     let totalPrice = 0;
 
     function addToCart(game) {
+        // Agregar el juego al carrito
         cart.push(game);
+        // Sumar el precio del juego al total
         totalPrice += game.price;
+        // Actualizar la visualización del carrito y el total
         updateCartDisplay();
         updateTotalPrice();
     }
 
     function removeFromCart(index) {
+        // Restar el precio del juego eliminado del total
         totalPrice -= cart[index].price;
+        // Eliminar el juego del carrito
         cart.splice(index, 1);
+        // Actualizar la visualización del carrito y el total
         updateCartDisplay();
         updateTotalPrice();
     }
@@ -113,11 +131,15 @@
         const cartItemsDiv = document.getElementById('cartItems');
         cartItemsDiv.innerHTML = ''; // Limpiar el contenido previo
 
+        // Mostrar los juegos añadidos en el carrito
         cart.forEach((game, index) => {
             const gameDiv = document.createElement('div');
             gameDiv.className = 'game';
             gameDiv.innerHTML = `
-                <span>${game.name} - $${game.price}</span>
+                <div>
+                    <img src="${game.icon}" alt="${game.name}">
+                    <span>${game.name} - $${game.price}</span>
+                </div>
                 <a href="#" class="remove-button" onclick="removeFromCart(${index})">Eliminar</a>
             `;
             cartItemsDiv.appendChild(gameDiv);
@@ -125,6 +147,7 @@
     }
 
     function updateTotalPrice() {
+        // Actualizar el precio total en la esquina superior derecha
         document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
     }
 
@@ -135,10 +158,15 @@
         // window.location.href = 'carrito.html';
     }
 
+    function exitToMenu() {
+        // Redirigir a la página del menú inicial
+        window.location.href = 'index.html'; // Aquí rediriges al menú inicial
+    }
+
     document.getElementById('clearCart').addEventListener('click', clearCart);
 
-    // Ejemplo de cómo agregar un juego
-    // addToCart({ name: "BeamNG.drive", price: 3.83 }); // Descomenta esta línea para probar
+    // Ejemplo de cómo agregar un juego con icono
+    // addToCart({ name: "BeamNG.drive", price: 3.83, icon: "url_del_icono" }); // Descomenta esta línea para probar
 </script>
 
 </body>
