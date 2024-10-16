@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blimbourukeys - Terror</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Función para añadir juegos al carrito
+        function addToCart(gameName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: gameName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(gameName + ' ha sido añadido al carrito.');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -17,6 +26,7 @@
                 <li><a href="cars.html">Coches</a></li>
                 <li><a href="simulation.html">Simulación</a></li>
                 <li><a href="creativity.html">Creatividad</a></li>
+                <li><a href="carrito.html">Carrito</a></li> <!-- Enlace al carrito -->
             </ul>
         </nav>
     </header>
@@ -29,6 +39,7 @@
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1723571309" alt="Five Nights at Freddy's: Into the Pit">
             <p>Precio: 5 US dólares</p>
             <p>Descripción: Una emocionante experiencia de supervivencia donde los jugadores deben pasar cinco noches en un lugar lleno de animatronics aterradores.</p>
+            <button onclick="addToCart('Five Nights at Freddy\'s: Into the Pit', 5)">Añadir al carrito</button>
         </div>
 
         <div class="game">
@@ -36,6 +47,7 @@
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2020840/header.jpg?t=1728489895" alt="Left to Rot">
             <p>Precio: 1 US dólar</p>
             <p>Descripción: Un juego de terror que te sumerge en un mundo de pesadilla.</p>
+            <button onclick="addToCart('Left to Rot', 1)">Añadir al carrito</button>
         </div>
 
         <div class="game">
@@ -43,6 +55,7 @@
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2208780/header.jpg?t=1728659420" alt="Psycho Fear">
             <p>Precio: 2 US dólares</p>
             <p>Descripción: Enfréntate a tus miedos en este intenso juego de horror.</p>
+            <button onclick="addToCart('Psycho Fear', 2)">Añadir al carrito</button>
         </div>
 
         <div class="game">
@@ -50,6 +63,7 @@
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796020/header.jpg?t=1727537653" alt="Refuted Wind">
             <p>Precio: 1 US dólar</p>
             <p>Descripción: Están ocurriendo misteriosos asesinatos en el área donde vive Dave. En un intento de llamar la atención sobre estos horribles acontecimientos, decide realizar un cortometraje. A medida que se conoce su proyecto, empiezan a suceder acontecimientos aterradores a su alrededor.</p>
+            <button onclick="addToCart('Refuted Wind', 1)">Añadir al carrito</button>
         </div>
 
         <div class="game">
@@ -57,6 +71,7 @@
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3060970/header.jpg?t=1726412438" alt="Gwihyang: Homecoming">
             <p>Precio: 1.50 US dólares</p>
             <p>Descripción: Gwihyang captura la imagen tradicional de Corea, brindándole una nueva experiencia. Se desarrolla una tensa aventura en la que escapas de la amenaza de los monstruos en el espacio cambiante.</p>
+            <button onclick="addToCart('Gwihyang: Homecoming', 1.5)">Añadir al carrito</button>
         </div>
     </main>
 
