@@ -61,6 +61,15 @@
         .purchase-button:hover {
             background-color: #218838;
         }
+        .cart-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -76,11 +85,15 @@
     <a href="terror.html">Terror</a>
     <a href="vr.html">Realidad Virtual</a>
     <a href="creatividad.html">Creatividad</a>
-    <a href="autos.html">Autos</a> <!-- Enlace a la categoría de Autos -->
+    <a href="autos.html">Autos</a>
     <a href="terminos.html">Términos y Condiciones</a>
     <a href="contacto.html">Contacto</a>
-    <a href="carrito.html">Carrito</a> <!-- Enlace al carrito -->
+    <a href="carrito.html">Carrito</a>
 </nav>
+
+<div class="cart-counter" id="cartCounter">
+    Carrito: $0
+</div>
 
 <section>
     <h2>Five Nights at Freddy's: Into the Pit</h2>
@@ -118,7 +131,7 @@
         <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796020/header.jpg?t=1727537653" alt="Refuted Wind">
         <div>
             <p>Precio: 1 US dólar</p>
-            <p>Descripción: Están ocurriendo misteriosos asesinatos en el área donde vive Dave. En un intento de llamar la atención sobre estos horribles acontecimientos, decide realizar un cortometraje. A medida que se conoce su proyecto, empiezan a suceder acontecimientos aterradores a su alrededor.</p>
+            <p>Descripción: Están ocurriendo misteriosos asesinatos en el área donde vive Dave...</p>
             <a href="#" class="purchase-button" onclick="addToCart({ name: 'Refuted Wind', price: 1 })">Agregar al Carrito</a>
         </div>
     </div>
@@ -128,7 +141,7 @@
         <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3060970/header.jpg?t=1726412438" alt="Gwihyang: Homecoming">
         <div>
             <p>Precio: 1.50 US dólares</p>
-            <p>Descripción: Gwihyang captura la imagen tradicional de Corea, brindándole una nueva experiencia. Se desarrolla una tensa aventura en la que escapas de la amenaza de los monstruos en el espacio cambiante.</p>
+            <p>Descripción: Gwihyang captura la imagen tradicional de Corea...</p>
             <a href="#" class="purchase-button" onclick="addToCart({ name: 'Gwihyang: Homecoming', price: 1.5 })">Agregar al Carrito</a>
         </div>
     </div>
@@ -139,16 +152,22 @@
 </footer>
 
 <script>
-    let cart = [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     function addToCart(game) {
         cart.push(game);
+        localStorage.setItem('cart', JSON.stringify(cart));
         alert(`${game.name} ha sido agregado al carrito.`);
+        updateCartCounter();
     }
 
-    function updateCartDisplay() {
-        // Esta función se utilizará en la página del carrito
+    function updateCartCounter() {
+        const total = cart.reduce((sum, game) => sum + game.price, 0);
+        document.getElementById('cartCounter').textContent = `Carrito: $${total.toFixed(2)}`;
     }
+
+    // Actualiza el contador al cargar la página
+    updateCartCounter();
 </script>
 
 </body>
