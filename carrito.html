@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras - Blimbourukeys</title>
+    <title>Carrito - Blimbourukeys</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif;  
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -16,24 +16,20 @@
             color: #fff;
             text-align: center;
             padding: 20px;
-            position: relative;
         }
-        .cart-info {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #fff;
-            color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
+        nav {
             display: flex;
-            align-items: center;
-            cursor: pointer;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
         }
-        .cart-info img {
-            width: 30px;
-            margin-right: 10px;
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         section {
             padding: 20px;
@@ -41,55 +37,68 @@
             margin: 0 auto;
             background-color: #fff;
         }
-        h2 {
-            color: #333;
-        }
         .game {
             margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
         .game img {
-            width: 50px;
+            width: 100px;
             margin-right: 20px;
         }
-        .remove-button, .exit-button {
-            padding: 5px 10px;
-            background-color: #dc3545;
+        .purchase-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #28a745;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            margin-top: 10px;
         }
-        .remove-button:hover, .exit-button:hover {
-            background-color: #c82333;
+        .purchase-button:hover {
+            background-color: #218838;
         }
-        .exit-button {
-            background-color: #007bff;
-            margin-top: 20px;
+        .empty-cart {
+            text-align: center;
+            font-size: 1.5em;
+            color: #888;
         }
-        .exit-button:hover {
-            background-color: #0056b3;
+        .cart-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Carrito de Compras</h1>
-    <div class="cart-info" onclick="goToCart()">
-        <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Carrito de Compras"> <!-- Icono de carrito -->
-        <span>Total: $<span id="totalPrice">0</span></span>
-    </div>
+    <h1>Tu Carrito</h1>
 </header>
 
-<section>
-    <h2>Juegos Seleccionados</h2>
-    <div id="cartItems">
-        <!-- Los juegos seleccionados se mostrarán aquí -->
-    </div>
-    <button id="clearCart" class="remove-button">Vaciar Carrito</button>
-    <button class="exit-button" onclick="exitToMenu()">Salir y Volver al Menú</button> <!-- Botón para salir -->
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="accion.html">Acción</a>
+    <a href="simulacion.html">Simulación</a>
+    <a href="terror.html">Terror</a>
+    <a href="vr.html">Realidad Virtual</a>
+    <a href="creatividad.html">Creatividad</a>
+    <a href="autos.html">Autos</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="carrito.html">Carrito</a>
+</nav>
+
+<div class="cart-counter" id="cartCounter">
+    Carrito: $0
+</div>
+
+<section id="cartItems">
+    <!-- Aquí se mostrarán los elementos del carrito -->
 </section>
 
 <footer>
@@ -97,76 +106,39 @@
 </footer>
 
 <script>
-    let cart = [];
-    let totalPrice = 0;
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function addToCart(game) {
-        // Agregar el juego al carrito
-        cart.push(game);
-        // Sumar el precio del juego al total
-        totalPrice += game.price;
-        // Actualizar la visualización del carrito y el total
-        updateCartDisplay();
-        updateTotalPrice();
-    }
+    function displayCartItems() {
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartCounter = document.getElementById('cartCounter');
+        cartItemsContainer.innerHTML = '';
 
-    function removeFromCart(index) {
-        // Restar el precio del juego eliminado del total
-        totalPrice -= cart[index].price;
-        // Eliminar el juego del carrito
-        cart.splice(index, 1);
-        // Actualizar la visualización del carrito y el total
-        updateCartDisplay();
-        updateTotalPrice();
-    }
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío.</p>';
+            cartCounter.textContent = 'Carrito: $0';
+            return;
+        }
 
-    function clearCart() {
-        cart = [];
-        totalPrice = 0;
-        updateCartDisplay();
-        updateTotalPrice();
-    }
-
-    function updateCartDisplay() {
-        const cartItemsDiv = document.getElementById('cartItems');
-        cartItemsDiv.innerHTML = ''; // Limpiar el contenido previo
-
-        // Mostrar los juegos añadidos en el carrito
-        cart.forEach((game, index) => {
-            const gameDiv = document.createElement('div');
-            gameDiv.className = 'game';
-            gameDiv.innerHTML = `
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price;
+            const itemElement = document.createElement('div');
+            itemElement.className = 'game';
+            itemElement.innerHTML = `
+                <img src="https://via.placeholder.com/100" alt="${item.name}"> <!-- Cambia esta URL por la imagen correspondiente -->
                 <div>
-                    <img src="${game.icon}" alt="${game.name}">
-                    <span>${game.name} - $${game.price}</span>
+                    <p>${item.name}</p>
+                    <p>Precio: $${item.price.toFixed(2)}</p>
                 </div>
-                <a href="#" class="remove-button" onclick="removeFromCart(${index})">Eliminar</a>
             `;
-            cartItemsDiv.appendChild(gameDiv);
+            cartItemsContainer.appendChild(itemElement);
         });
+
+        cartCounter.textContent = `Carrito: $${total.toFixed(2)}`;
     }
 
-    function updateTotalPrice() {
-        // Actualizar el precio total en la esquina superior derecha
-        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
-    }
-
-    function goToCart() {
-        // Redirigir a la página de carrito de compras
-        alert('Ir al carrito para finalizar la compra.');
-        // Aquí puedes redirigir a la página del carrito real si tienes una
-        // window.location.href = 'carrito.html';
-    }
-
-    function exitToMenu() {
-        // Redirigir a la página del menú inicial
-        window.location.href = 'index.html'; // Aquí rediriges al menú inicial
-    }
-
-    document.getElementById('clearCart').addEventListener('click', clearCart);
-
-    // Ejemplo de cómo agregar un juego con icono
-    // addToCart({ name: "BeamNG.drive", price: 3.83, icon: "url_del_icono" }); // Descomenta esta línea para probar
+    // Llamar a la función para mostrar los elementos del carrito al cargar la página
+    displayCartItems();
 </script>
 
 </body>
