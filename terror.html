@@ -4,7 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blimbourukeys - Terror</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de tener un archivo CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Cambia el color de fondo según sea necesario */
+        }
+
+        header {
+            background-color: #333; /* Color del fondo del encabezado */
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center; /* Centra los elementos del menú */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px; /* Espaciado entre elementos */
+        }
+
+        nav ul li a {
+            color: white; /* Color del texto */
+            text-decoration: none; /* Sin subrayado */
+            font-size: 16px; /* Tamaño de fuente */
+            padding: 10px; /* Espaciado interior */
+            transition: background-color 0.3s; /* Efecto al pasar el ratón */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Color de fondo al pasar el ratón */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .game {
+            margin-bottom: 20px;
+            border: 1px solid #ddd; /* Borde para cada juego */
+            padding: 15px;
+            border-radius: 5px;
+            background-color: white; /* Fondo blanco para los juegos */
+        }
+
+        .game img {
+            max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+            height: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333; /* Color del fondo del pie de página */
+            color: white; /* Color del texto del pie de página */
+        }
+    </style>
     <script>
         // Función para añadir juegos al carrito
         function addToCart(gameName, price) {
