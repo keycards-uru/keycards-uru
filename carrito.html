@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito - Blimbourukeys</title>
+    <title>Juegos de Acción - Blimbourukeys</title>
     <style>
         body {
             font-family: Arial, sans-serif;  
@@ -37,13 +37,16 @@
             margin: 0 auto;
             background-color: #fff;
         }
+        h2 {
+            color: #333;
+        }
         .game {
             margin-bottom: 20px;
             display: flex;
             align-items: center;
         }
         .game img {
-            width: 100px;
+            width: 200px;
             margin-right: 20px;
         }
         .purchase-button {
@@ -58,26 +61,39 @@
         .purchase-button:hover {
             background-color: #218838;
         }
-        .empty-cart {
-            text-align: center;
-            font-size: 1.5em;
-            color: #888;
-        }
-        .cart-counter {
+
+        /* Estilo para la barra lateral fija */
+        .sidebar {
             position: fixed;
             top: 20px;
             right: 20px;
+            width: 200px;
             background-color: #28a745;
-            color: white;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
+            color: white;
+        }
+        .sidebar button, .sidebar a {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar button:hover, .sidebar a:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Tu Carrito</h1>
+    <h1>Juegos de Acción</h1>
 </header>
 
 <nav>
@@ -93,12 +109,54 @@
     <a href="carrito.html">Carrito</a>
 </nav>
 
-<div class="cart-counter" id="cartCounter">
-    Carrito: $0
+<!-- Barra lateral fija para el carrito -->
+<div class="sidebar">
+    <div id="cartCounter">Carrito: $0</div>
+    <button onclick="clearCart()">Vaciar Carrito</button>
+    <a href="index.html">Volver al Inicio</a>
 </div>
 
-<section id="cartItems">
-    <!-- Aquí se mostrarán los elementos del carrito -->
+<section>
+    <h2>South Park: Snow Day!</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1214650/header.jpg?t=1725517426" alt="South Park: Snow Day!">
+        <div>
+            <p>Precio: 9 US dólares</p>
+            <p>Descripción: Un emocionante juego de acción en el que los personajes de South Park viven una aventura épica en un día nevado.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(9)">Agregar al Carrito</a>
+        </div>
+    </div>
+
+    <h2>Raft</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011" alt="Raft">
+        <div>
+            <p>Precio: 10 US dólares</p>
+            <p>Descripción: ¡Te lanza a ti y a tus amigos a una aventura oceánica épica! ¡Solos o juntos, los jugadores luchan por sobrevivir en un peligroso viaje a través de un vasto mar! Reúne escombros, hurga en los arrecifes y construye tu propia casa flotante, ¡pero ten cuidado con los tiburones devoradores de hombres!</p>
+            <a href="#" class="purchase-button" onclick="addToCart(10)">Agregar al Carrito</a>
+        </div>
+    </div>
+
+    <h2>Slackers – Carts of Glory</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2354000/header.jpg?t=1727693537" alt="Slackers – Carts of Glory">
+        <div>
+            <p>Precio: 6 US dólares</p>
+            <p>Descripción: ¡Entra en el maravilloso mundo de Slackers! Imagínate esto: ¡tú y tus amigos se quedan sin bebidas y la tienda está cerrando! ¡Súbete a un carrito de compras, la maravilla ecológica definitiva, domina el arte de montar una bestia impredecible, descubre atajos mientras allanas tu camino hacia la gloria!</p>
+            <a href="#" class="purchase-button" onclick="addToCart(6)">Agregar al Carrito</a>
+        </div>
+    </div>
+
+    <h2>Sons Of The Forest</h2>
+    <div class="game">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1326470/header.jpg?t=1708624856" alt="Sons Of The Forest">
+        <div>
+            <p>Precio: 9 US dólares</p>
+            <p>Descripción: Enviado a buscar a un multimillonario desaparecido en una isla remota, te encuentras en un infierno infestado de caníbales. Crea, construye y lucha por sobrevivir, solo o con amigos, en este nuevo y aterrador simulador de terror y supervivencia de mundo abierto.</p>
+            <a href="#" class="purchase-button" onclick="addToCart(9)">Agregar al Carrito</a>
+        </div>
+    </div>
+
 </section>
 
 <footer>
@@ -106,39 +164,31 @@
 </footer>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Inicializa la variable del total
+    let totalAmount = 0;
 
-    function displayCartItems() {
-        const cartItemsContainer = document.getElementById('cartItems');
-        const cartCounter = document.getElementById('cartCounter');
-        cartItemsContainer.innerHTML = '';
-
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío.</p>';
-            cartCounter.textContent = 'Carrito: $0';
-            return;
+    // Cargar el total desde localStorage
+    window.onload = function() {
+        const savedTotal = localStorage.getItem('totalAmount');
+        if (savedTotal) {
+            totalAmount = parseFloat(savedTotal);
+            document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`;
         }
-
-        let total = 0;
-        cart.forEach(item => {
-            total += item.price;
-            const itemElement = document.createElement('div');
-            itemElement.className = 'game';
-            itemElement.innerHTML = `
-                <img src="https://via.placeholder.com/100" alt="${item.name}"> <!-- Cambia esta URL por la imagen correspondiente -->
-                <div>
-                    <p>${item.name}</p>
-                    <p>Precio: $${item.price.toFixed(2)}</p>
-                </div>
-            `;
-            cartItemsContainer.appendChild(itemElement);
-        });
-
-        cartCounter.textContent = `Carrito: $${total.toFixed(2)}`;
     }
 
-    // Llamar a la función para mostrar los elementos del carrito al cargar la página
-    displayCartItems();
+    function addToCart(price) {
+        totalAmount += price; // Sumar el precio del juego al total
+        localStorage.setItem('totalAmount', totalAmount); // Guardar el total en localStorage
+        document.getElementById('cartCounter').textContent = `Carrito: $${totalAmount.toFixed(2)}`; // Actualizar el total
+        alert(`Juego agregado al carrito. Total: $${totalAmount}`);
+    }
+
+    function clearCart() {
+        totalAmount = 0; // Reiniciar el total
+        localStorage.setItem('totalAmount', totalAmount); // Actualizar el localStorage
+        document.getElementById('cartCounter').textContent = `Carrito: $0`; // Actualizar el contador
+        alert("El carrito ha sido vaciado.");
+    }
 </script>
 
 </body>
